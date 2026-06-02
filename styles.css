@@ -81,11 +81,11 @@ body {
     opacity: 0;
     will-change: left, transform, opacity;
     
-    /* 9 elementos * 3.5s por elemento = 31.5s duración total del ciclo */
+    /* Modificar: tiempo respecto al delay */
     animation: scroll-sequential 69.93s linear infinite;
 }
 
-/* --- Tiempos de retardo secuenciales (Intervalo de 3.5 segundos) --- */
+/* Modificar: tiempo adecuado para cada texto */
 .item-1 { animation-delay: 0s; }
 .item-2 { animation-delay: 7.77s; }
 .item-3 { animation-delay: 15.54s; }
