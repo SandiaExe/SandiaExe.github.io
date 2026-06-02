@@ -1,8 +1,310 @@
-html {
-    background-color: #c6f79e;
+/* --- Reset Básico --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border-radius: 0 !important; /* Esquinas cuadradas típicas de la época */
 }
 
-h1 {
-    font-family: Arial, Helvetica, sans-serif;
+body {
+    background-color: #008080; /* Color turquesa de escritorio clásico */
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-bottom: 20px;
+    overflow-x: hidden;
+}
 
+/* --- Tipografía estilo Windows 95 --- */
+/* Serif para textos de bloque (Georgia/Times New Roman) */
+.win95-text {
+    font-family: "Times New Roman", Times, "Georgia", serif;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.4;
+    color: #000000;
+}
+
+/* --- Bordes Tridimensionales clónicos de Win95 --- */
+.win95-window {
+    background-color: #c0c0c0;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+    box-shadow: 1px 1px 0px 0px #000000;
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+}
+
+.win95-inset {
+    background-color: #ffffe1; /* Beige de cuadros de ayuda */
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    box-shadow: inset 1px 1px 0px 0px #000000;
+}
+
+/* --- Barra de Noticias Superior (Marquesina secuencial) --- */
+.news-ticker {
+    margin: 10px 20px 0 20px;
+    padding: 5px;
+    overflow: hidden;
+    position: relative;
+    height: 32px;
+    display: flex;
+    align-items: center;
+}
+
+.ticker-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.ticker-item {
+    position: absolute;
+    white-space: nowrap;
+    font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    color: #000000;
+    
+    /* Estado inicial: oculto totalmente a la derecha */
+    left: 100%;
+    transform: translateX(0);
+    opacity: 0;
+    will-change: left, transform, opacity;
+    
+    /* 9 elementos * 3.5s por elemento = 31.5s duración total del ciclo */
+    animation: scroll-sequential 69.93s linear infinite;
+}
+
+/* --- Tiempos de retardo secuenciales (Intervalo de 3.5 segundos) --- */
+.item-1 { animation-delay: 0s; }
+.item-2 { animation-delay: 7.77s; }
+.item-3 { animation-delay: 15.54s; }
+.item-4 { animation-delay: 23.31s; }
+.item-5 { animation-delay: 31.08s; }
+.item-6 { animation-delay: 38.85s; }
+.item-7 { animation-delay: 46.62s; }
+.item-8 { animation-delay: 54.39s; }
+.item-9 { animation-delay: 62.16s; }
+
+/* 
+   Animación matemática:
+   Cada elemento se desplaza activamente durante el 11.11% del tiempo total (1/9 del ciclo).
+   El resto del tiempo permanece oculto en su posición inicial.
+*/
+@keyframes scroll-sequential {
+    0% {
+        left: 100%;
+        transform: translateX(0);
+        opacity: 1;
+    }
+    11.11% {
+        left: 0;
+        transform: translateX(-100%);
+        opacity: 1;
+    }
+    11.12% {
+        left: 0;
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        left: 100%;
+        transform: translateX(0);
+        opacity: 0;
+    }
+}
+
+/* --- Barra de Título clásica --- */
+.win95-titlebar {
+    background: #000080; /* Azul marino clásico */
+    color: #ffffff;
+    padding: 3px 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+}
+
+.titlebar-text {
+    font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    margin-left: 2px;
+}
+
+/* Botón cerrar [X] */
+.win95-btn-close {
+    width: 16px;
+    height: 14px;
+    background-color: #c0c0c0;
+    border-top: 1px solid #ffffff;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #808080;
+    border-bottom: 1px solid #808080;
+    font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
+    font-size: 9px;
+    font-weight: bold;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    outline: none;
+}
+
+.win95-btn-close:active {
+    border-top: 1px solid #808080;
+    border-left: 1px solid #808080;
+    border-right: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    padding: 2px 0 0 2px;
+}
+
+/* --- Botón Estándar de Acción (Redes) --- */
+.win95-btn-standard {
+    background-color: #c0c0c0;
+    font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    color: #000000;
+    padding: 4px 12px;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+    box-shadow: 1px 1px 0px 0px #000000;
+    cursor: pointer;
+    outline: none;
+    text-align: center;
+    width: 100%;
+}
+
+.win95-btn-standard:active {
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    box-shadow: none;
+    padding: 5px 11px 3px 13px;
+}
+
+/* --- Contenedor del Escritorio --- */
+.desktop-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-grow: 1;
+}
+
+/* --- Ventana de Bienvenida --- */
+.welcome-body {
+    padding: 12px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.welcome-text {
+    flex: 1;
+}
+
+.welcome-box {
+    width: 160px;
+    height: 160px;
+    flex-shrink: 0;
+}
+
+/* --- Grid de 3 Columnas --- */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    gap: 20px;
+    align-items: stretch;
+}
+
+.grid-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.win95-body {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex-grow: 1;
+}
+
+/* --- Tamaños de Cajas Beige --- */
+.box-large {
+    height: 220px;
+    width: 100%;
+}
+
+.box-medium {
+    height: 150px;
+    width: 100%;
+}
+
+/* --- Estructura Proyectos --- */
+.project-body {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.project-text {
+    flex: 1;
+}
+
+.plot-container {
+    width: 180px;
+    height: 120px;
+    flex-shrink: 0;
+    background-color: #ffffff;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Bloques grises vacíos para simular proyectos */
+.empty-block {
+    min-height: 200px;
+    flex-grow: 1;
+}
+
+.fill-height {
+    height: 100%;
+}
+
+/* --- Adaptabilidad Móvil --- */
+@media (max-width: 900px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+    .welcome-body, .project-body {
+        flex-direction: column;
+    }
+    .welcome-box, .plot-container {
+        width: 100%;
+        height: 200px;
+    }
 }
