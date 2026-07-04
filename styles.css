@@ -1,62 +1,55 @@
-/* --- Reset Básico --- */
+/* --- Reset Básico y General --- */
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
     border-radius: 0 !important; /* Esquinas cuadradas típicas de la época */
 }
 
 body {
-    background-color: #008080; /* Color turquesa de escritorio clásico */
+    background-color: #c0c0c0; /* Gris clásico del sistema */
     color: #000000;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding-bottom: 20px;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     overflow-x: hidden;
 }
 
-/* --- Tipografía estilo Windows 95 --- */
-/* Serif para textos de bloque (Georgia/Times New Roman) */
-.win95-text {
+/* --- Dynamic Title Banner --- */
+.top-banner {
+    background: linear-gradient(90deg, #000080, #1084d0); /* Degradado clásico Windows 98 */
+    color: #ffffff;
+    padding: 12px 20px;
     font-family: "Times New Roman", Times, "Georgia", serif;
-    font-size: 16px;
+    font-size: 28px;
     font-weight: bold;
-    line-height: 1.4;
-    color: #000000;
-}
-
-/* --- Bordes Tridimensionales clónicos de Win95 --- */
-.win95-window {
-    background-color: #c0c0c0;
-    border-top: 2px solid #ffffff;
-    border-left: 2px solid #ffffff;
-    border-right: 2px solid #808080;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px #000000;
     border-bottom: 2px solid #808080;
-    box-shadow: 1px 1px 0px 0px #000000;
-    padding: 2px;
-    display: flex;
-    flex-direction: column;
+    margin: 0;
+    user-select: none;
 }
 
-.win95-inset {
-    background-color: #ffffe1; /* Beige de cuadros de ayuda */
-    border-top: 2px solid #808080;
-    border-left: 2px solid #808080;
-    border-right: 2px solid #ffffff;
-    border-bottom: 2px solid #ffffff;
-    box-shadow: inset 1px 1px 0px 0px #000000;
+/* --- News Ticker (Marquesina secuencial clásica) --- */
+.news-ticker-container {
+    padding: 10px 20px 5px 20px;
+    background-color: #c0c0c0;
 }
 
-/* --- Barra de Noticias Superior (Marquesina secuencial) --- */
 .news-ticker {
-    margin: 10px 20px 0 20px;
     padding: 5px;
     overflow: hidden;
     position: relative;
     height: 32px;
     display: flex;
     align-items: center;
+    background-color: #808080; /* Fondo gris oscuro */
+    border-top: 2px solid #5a5a5a;
+    border-left: 2px solid #5a5a5a;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    box-shadow: inset 1px 1px 0px 0px #000000;
 }
 
 .ticker-wrapper {
@@ -73,7 +66,7 @@ body {
     font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
     font-size: 13px;
     font-weight: bold;
-    color: #000000;
+    color: #ffffff; /* Texto blanco */
     
     /* Estado inicial: oculto totalmente a la derecha */
     left: 100%;
@@ -81,11 +74,10 @@ body {
     opacity: 0;
     will-change: left, transform, opacity;
     
-    /* Modificar: tiempo respecto al delay */
     animation: scroll-sequential 69.93s linear infinite;
 }
 
-/* Modificar: tiempo adecuado para cada texto */
+/* Tiempos de retardo secuenciales */
 .item-1 { animation-delay: 0s; }
 .item-2 { animation-delay: 7.77s; }
 .item-3 { animation-delay: 15.54s; }
@@ -96,11 +88,6 @@ body {
 .item-8 { animation-delay: 54.39s; }
 .item-9 { animation-delay: 62.16s; }
 
-/* 
-   Animación matemática:
-   Cada elemento se desplaza activamente durante el 11.11% del tiempo total (1/9 del ciclo).
-   El resto del tiempo permanece oculto en su posición inicial.
-*/
 @keyframes scroll-sequential {
     0% {
         left: 100%;
@@ -124,187 +111,332 @@ body {
     }
 }
 
-/* --- Barra de Título clásica --- */
-.win95-titlebar {
-    background: #000080; /* Azul marino clásico */
-    color: #ffffff;
-    padding: 3px 4px;
+/* --- Menú de Pestañas (98.css overrides) --- */
+menu[role="tablist"] {
+    margin: 5px 20px 0 20px;
+    padding-left: 0;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+}
+
+menu[role="tablist"] li[role="tab"] {
+    cursor: pointer;
     user-select: none;
+    font-weight: bold;
 }
 
-.titlebar-text {
-    font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
-    font-weight: bold;
-    font-size: 13px;
-    margin-left: 2px;
+menu[role="tablist"] li[role="tab"] u {
+    text-decoration: underline;
 }
 
-/* Botón cerrar [X] */
-.win95-btn-close {
-    width: 16px;
-    height: 14px;
-    background-color: #c0c0c0;
-    border-top: 1px solid #ffffff;
-    border-left: 1px solid #ffffff;
-    border-right: 1px solid #808080;
-    border-bottom: 1px solid #808080;
+/* --- Contenedor del Escritorio --- */
+.desktop {
+    background-color: #008080; /* Color turquesa de escritorio clásico */
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    align-items: flex-start;
+    border-top: 2px solid #ffffff; /* Simula el borde inferior de la barra de pestañas */
+}
+
+/* --- Sidebar Izquierda (Columna 1) --- */
+.sidebar {
+    flex: 1;
+    max-width: 250px;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: #ffffff;
     font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
-    font-size: 9px;
-    font-weight: bold;
-    color: #000000;
+}
+
+.avatar-box {
+    width: 180px;
+    height: 180px;
+    background-color: #e6ceff; /* Fondo lavanda del avatar */
+    border: 2px solid #000000;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    outline: none;
+    padding: 8px;
+    box-shadow: 1px 1px 0px 0px #000000;
 }
 
-.win95-btn-close:active {
-    border-top: 1px solid #808080;
-    border-left: 1px solid #808080;
-    border-right: 1px solid #ffffff;
-    border-bottom: 1px solid #ffffff;
-    padding: 2px 0 0 2px;
+.avatar-svg {
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
 }
 
-/* --- Botón Estándar de Acción (Redes) --- */
-.win95-btn-standard {
-    background-color: #c0c0c0;
+.sidebar-name {
     font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 5px 0;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-info {
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.sidebar-info p {
+    margin: 5px 0;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 5px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+    text-decoration: underline;
     font-weight: bold;
     font-size: 13px;
-    color: #000000;
-    padding: 4px 12px;
-    border-top: 2px solid #ffffff;
-    border-left: 2px solid #ffffff;
-    border-right: 2px solid #808080;
-    border-bottom: 2px solid #808080;
-    box-shadow: 1px 1px 0px 0px #000000;
     cursor: pointer;
     outline: none;
-    text-align: center;
+}
+
+.social-link:hover {
+    color: #ffffe1;
+}
+
+.social-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* --- Contenedor de Ventana Principal (Columna 2 - Contenido) --- */
+.content-window {
+    flex: 1.5;
+    min-width: 0;
+    box-shadow: 1px 1px 0px 0px #000000;
+}
+
+/* --- Columna Derecha (Columna 3 - Vacía) --- */
+.right-column-empty {
+    flex: 1;
+    max-width: 250px;
+    min-width: 200px;
+}
+
+/* --- Tab Panels (Control de Visibilidad) --- */
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+/* --- Contenidos Específicos de Páginas --- */
+
+/* Pestaña: Overview */
+.overview-body {
+    font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 10px;
+}
+
+.overview-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    padding: 25px 0;
     width: 100%;
 }
 
-.win95-btn-standard:active {
+.overview-btn {
+    width: 240px;
+    height: 36px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Pestaña: About Me */
+.aboutme-body {
+    font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    padding: 10px;
+    max-height: 600px;
+    overflow-y: auto; /* Permite scroll vertical interno si el texto es largo */
+}
+
+.image-container {
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    padding: 10px;
+    margin: 15px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    width: 320px;
+    height: 200px;
+    box-shadow: inset 1px 1px 0px 0px #808080;
+}
+
+.image-container.dark-bg {
+    background-color: #1a1a1a;
+}
+
+.image-container svg {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Pestaña: Skills */
+.skills-body {
+    font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
+    font-size: 13px;
+    padding: 10px;
+}
+
+.skills-category {
+    margin-bottom: 25px;
+}
+
+.skills-category-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #808080;
+    padding-bottom: 2px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
+}
+
+.skill-button {
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+    background-color: #c0c0c0;
+}
+
+/* Pestaña: Projects */
+.projects-body {
+    font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
+    font-size: 13px;
+    padding: 10px;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.project-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.project-panel {
+    background-color: #ffffe1; /* Inset beige tradicional */
     border-top: 2px solid #808080;
     border-left: 2px solid #808080;
     border-right: 2px solid #ffffff;
     border-bottom: 2px solid #ffffff;
-    box-shadow: none;
-    padding: 5px 11px 3px 13px;
-}
-
-/* --- Contenedor del Escritorio --- */
-.desktop-container {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 10px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    flex-grow: 1;
-}
-
-/* --- Ventana de Bienvenida --- */
-.welcome-body {
-    padding: 12px;
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-    align-items: flex-start;
-}
-
-.welcome-text {
-    flex: 1;
-}
-
-.welcome-box {
-    width: 160px;
-    height: 160px;
-    flex-shrink: 0;
-}
-
-/* --- Grid de 3 Columnas --- */
-.main-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr 1fr;
-    gap: 20px;
-    align-items: stretch;
-}
-
-.grid-column {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.win95-body {
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    flex-grow: 1;
-}
-
-/* --- Tamaños de Cajas Beige --- */
-.box-large {
-    height: 220px;
-    width: 100%;
-}
-
-.box-medium {
-    height: 150px;
-    width: 100%;
-}
-
-/* --- Estructura Proyectos --- */
-.project-body {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-    align-items: flex-start;
-}
-
-.project-text {
-    flex: 1;
-}
-
-.plot-container {
-    width: 180px;
-    height: 120px;
-    flex-shrink: 0;
-    background-color: #ffffff;
-    padding: 5px;
+    box-shadow: inset 1px 1px 0px 0px #000000;
+    height: 300px;
+    margin-bottom: 25px;
+    padding: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Bloques grises vacíos para simular proyectos */
-.empty-block {
-    min-height: 200px;
-    flex-grow: 1;
-}
-
-.fill-height {
+.project-panel-placeholder {
+    border: 2px dashed #808080;
+    width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #808080;
+    font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    gap: 10px;
+    user-select: none;
+    text-align: center;
 }
 
 /* --- Adaptabilidad Móvil --- */
 @media (max-width: 900px) {
-    .main-grid {
-        grid-template-columns: 1fr;
-    }
-    .welcome-body, .project-body {
+    .desktop {
         flex-direction: column;
+        align-items: stretch;
+        padding: 12px;
+        gap: 20px;
     }
-    .welcome-box, .plot-container {
+    
+    .sidebar {
+        max-width: none;
+        min-width: 0;
         width: 100%;
-        height: 200px;
+        align-items: center;
+        text-align: center;
+        border-bottom: 2px dashed #ffffff;
+        padding-bottom: 20px;
+    }
+    
+    .right-column-empty {
+        display: none;
+    }
+    
+    .avatar-box {
+        margin: 0 auto;
+    }
+    
+    .social-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .top-banner {
+        font-size: 22px;
+        padding: 10px 15px;
+    }
+    
+    .news-ticker-container {
+        padding: 8px 12px 4px 12px;
+    }
+    
+    menu[role="tablist"] {
+        margin: 5px 12px 0 12px;
+    }
+    
+    .aboutme-body, .projects-body {
+        max-height: none;
+        overflow-y: visible;
     }
 }
