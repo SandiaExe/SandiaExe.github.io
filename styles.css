@@ -1,11 +1,13 @@
 /* --- Reset Básico y General --- */
 * {
     box-sizing: border-box;
-    border-radius: 0 !important; /* Esquinas cuadradas típicas de la época */
+    border-radius: 0 !important;
+    /* Esquinas cuadradas típicas de la época */
 }
 
 body {
-    background-color: #c0c0c0; /* Gris clásico del sistema */
+    background-color: #008080;
+    /* Fondo verde azulado del escritorio (fallback) */
     color: #000000;
     display: flex;
     flex-direction: column;
@@ -14,137 +16,168 @@ body {
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     overflow-x: hidden;
+    position: relative;
+    /* Necesario para que body::before se posicione respecto a body */
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background-image: url('fondo2.webp');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    filter: blur(12px);
+    /* Difuminado gaussiano */
+    z-index: -1;
+    pointer-events: none;
+}
+
+.site-container {
+    width: calc(100% - 24px);
+    max-width: 1100px;
+    margin: 20px auto;
+    /* Flota en el centro con margen vertical */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* Los bordes Win95, fondo gris y sombras se heredan de la clase .window de 98.css */
 }
 
 /* --- Dynamic Title Banner --- */
 .top-banner {
-    background: linear-gradient(90deg, #000080, #1084d0); /* Degradado clásico Windows 98 */
+    background: #081078;
+    /* Azul marino sólido clásico */
     color: #ffffff;
-    padding: 12px 20px;
-    font-family: "Times New Roman", Times, "Georgia", serif;
-    font-size: 28px;
+    padding: 16px 24px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 38px;
     font-weight: bold;
     letter-spacing: 0.5px;
-    text-shadow: 1px 1px #000000;
-    border-bottom: 2px solid #808080;
+    border-bottom: 2px solid #000000;
     margin: 0;
     user-select: none;
 }
 
-/* --- News Ticker (Marquesina secuencial clásica) --- */
+/* --- News Ticker (Marquesina de corrido) --- */
 .news-ticker-container {
-    padding: 10px 20px 5px 20px;
-    background-color: #c0c0c0;
+    padding: 0;
+    background-color: #808080;
+    border-bottom: 2px solid #000000;
 }
 
 .news-ticker {
-    padding: 5px;
     overflow: hidden;
     position: relative;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    background-color: #808080; /* Fondo gris oscuro */
-    border-top: 2px solid #5a5a5a;
-    border-left: 2px solid #5a5a5a;
-    border-right: 2px solid #ffffff;
-    border-bottom: 2px solid #ffffff;
-    box-shadow: inset 1px 1px 0px 0px #000000;
+    height: 34px;
+    background-color: #808080;
+    /* Fondo gris oscuro */
+    border: none;
+    box-shadow: none;
 }
 
 .ticker-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    left: 0;
     display: flex;
     align-items: center;
+    height: 100%;
+    white-space: nowrap;
+    animation: ticker-crawl 120s linear infinite;
 }
 
 .ticker-item {
-    position: absolute;
-    white-space: nowrap;
+    display: inline-block;
+    padding-right: 50px;
+    /* Espaciado entre noticias */
     font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
     font-size: 13px;
     font-weight: bold;
-    color: #ffffff; /* Texto blanco */
-    
-    /* Estado inicial: oculto totalmente a la derecha */
-    left: 100%;
-    transform: translateX(0);
-    opacity: 0;
-    will-change: left, transform, opacity;
-    
-    animation: scroll-sequential 69.93s linear infinite;
+    color: #ffffff;
+    /* Texto blanco */
 }
 
-/* Tiempos de retardo secuenciales */
-.item-1 { animation-delay: 0s; }
-.item-2 { animation-delay: 7.77s; }
-.item-3 { animation-delay: 15.54s; }
-.item-4 { animation-delay: 23.31s; }
-.item-5 { animation-delay: 31.08s; }
-.item-6 { animation-delay: 38.85s; }
-.item-7 { animation-delay: 46.62s; }
-.item-8 { animation-delay: 54.39s; }
-.item-9 { animation-delay: 62.16s; }
-
-@keyframes scroll-sequential {
+@keyframes ticker-crawl {
     0% {
-        left: 100%;
-        transform: translateX(0);
-        opacity: 1;
+        transform: translate3d(0, 0, 0);
     }
-    11.11% {
-        left: 0;
-        transform: translateX(-100%);
-        opacity: 1;
-    }
-    11.12% {
-        left: 0;
-        transform: translateX(-100%);
-        opacity: 0;
-    }
+
     100% {
-        left: 100%;
-        transform: translateX(0);
-        opacity: 0;
+        transform: translate3d(-50%, 0, 0);
     }
 }
 
 /* --- Menú de Pestañas (98.css overrides) --- */
 menu[role="tablist"] {
-    margin: 5px 20px 0 20px;
-    padding-left: 0;
+    margin: 0;
+    padding: 0;
     display: flex;
+    width: 100%;
+    background-color: #808080;
+    border-bottom: 2px solid #000000;
 }
 
 menu[role="tablist"] li[role="tab"] {
+    flex: 1;
+    text-align: center;
+    margin: 0;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
     cursor: pointer;
     user-select: none;
-    font-weight: bold;
+
+    /* Overrides para pestañas inactivas */
+    background-color: #b8b8b8;
+    border-top: 2px solid #dfdfdf;
+    border-left: 2px solid #dfdfdf;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+    box-shadow: 1px 1px 0px 0px #000000;
 }
 
 menu[role="tablist"] li[role="tab"] u {
     text-decoration: underline;
 }
 
+menu[role="tablist"] li[role="tab"][aria-selected="true"] {
+    background-color: #c0c0c0 !important;
+    border-top: 2px solid #ffffff !important;
+    border-left: 2px solid #ffffff !important;
+    border-right: 2px solid #808080 !important;
+    border-bottom: none !important;
+    box-shadow: 1px 0px 0px 0px #000000 !important;
+    height: 40px !important;
+    margin-top: -2px !important;
+    z-index: 10;
+}
+
 /* --- Contenedor del Escritorio --- */
 .desktop {
-    background-color: #008080; /* Color turquesa de escritorio clásico */
+    background-color: #008080;
+    /* Color turquesa de escritorio clásico original */
     flex-grow: 1;
-    padding: 20px;
+    padding: 14px;
     display: flex;
     flex-direction: row;
-    gap: 24px;
+    gap: 12px;
     align-items: flex-start;
-    border-top: 2px solid #ffffff; /* Simula el borde inferior de la barra de pestañas */
+    border-top: 2px solid #ffffff;
+    /* Simula el borde inferior de la barra de pestañas */
+    width: 100%;
 }
 
 /* --- Sidebar Izquierda (Columna 1) --- */
 .sidebar {
-    flex: 1;
-    max-width: 250px;
-    min-width: 200px;
+    flex: 0 0 210px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -155,7 +188,8 @@ menu[role="tablist"] li[role="tab"] u {
 .avatar-box {
     width: 180px;
     height: 180px;
-    background-color: #e6ceff; /* Fondo lavanda del avatar */
+    background-color: #e6ceff;
+    /* Fondo lavanda del avatar */
     border: 2px solid #000000;
     display: flex;
     align-items: center;
@@ -222,16 +256,14 @@ menu[role="tablist"] li[role="tab"] u {
 
 /* --- Contenedor de Ventana Principal (Columna 2 - Contenido) --- */
 .content-window {
-    flex: 1.5;
+    flex: 1;
     min-width: 0;
     box-shadow: 1px 1px 0px 0px #000000;
 }
 
 /* --- Columna Derecha (Columna 3 - Vacía) --- */
 .right-column-empty {
-    flex: 1;
-    max-width: 250px;
-    min-width: 200px;
+    flex: 0 0 175px;
 }
 
 /* --- Tab Panels (Control de Visibilidad) --- */
@@ -276,8 +308,6 @@ menu[role="tablist"] li[role="tab"] u {
     font-size: 13px;
     line-height: 1.6;
     padding: 10px;
-    max-height: 600px;
-    overflow-y: auto; /* Permite scroll vertical interno si el texto es largo */
 }
 
 .image-container {
@@ -345,8 +375,6 @@ menu[role="tablist"] li[role="tab"] u {
     font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
     font-size: 13px;
     padding: 10px;
-    max-height: 600px;
-    overflow-y: auto;
 }
 
 .project-title {
@@ -357,7 +385,8 @@ menu[role="tablist"] li[role="tab"] u {
 }
 
 .project-panel {
-    background-color: #ffffe1; /* Inset beige tradicional */
+    background-color: #ffffe1;
+    /* Inset beige tradicional */
     border-top: 2px solid #808080;
     border-left: 2px solid #808080;
     border-right: 2px solid #ffffff;
@@ -389,15 +418,16 @@ menu[role="tablist"] li[role="tab"] u {
 }
 
 /* --- Adaptabilidad Móvil --- */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
     .desktop {
         flex-direction: column;
         align-items: stretch;
         padding: 12px;
-        gap: 20px;
+        gap: 12px;
     }
-    
+
     .sidebar {
+        flex: none;
         max-width: none;
         min-width: 0;
         width: 100%;
@@ -406,37 +436,72 @@ menu[role="tablist"] li[role="tab"] u {
         border-bottom: 2px dashed #ffffff;
         padding-bottom: 20px;
     }
-    
+
     .right-column-empty {
         display: none;
     }
-    
+
     .avatar-box {
         margin: 0 auto;
     }
-    
+
     .social-links {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
         gap: 15px;
     }
-    
+
     .top-banner {
         font-size: 22px;
         padding: 10px 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+        text-align: center;
     }
-    
+
     .news-ticker-container {
-        padding: 8px 12px 4px 12px;
+        padding: 0 !important;
     }
-    
+
     menu[role="tablist"] {
-        margin: 5px 12px 0 12px;
+        margin: 0 !important;
+        flex-wrap: wrap;
+        height: auto !important;
     }
-    
-    .aboutme-body, .projects-body {
+
+    menu[role="tablist"] li[role="tab"] {
+        flex: 1 1 calc(50% - 4px);
+        margin: 2px !important;
+        height: 38px !important;
+    }
+
+    menu[role="tablist"] li[role="tab"][aria-selected="true"] {
+        height: 38px !important;
+        margin: 2px !important;
+        border-bottom: 2px solid #808080 !important;
+        box-shadow: 1px 1px 0px 0px #000000 !important;
+        margin-top: 2px !important;
+        margin-bottom: 2px !important;
+    }
+
+    .aboutme-body,
+    .projects-body {
         max-height: none;
         overflow-y: visible;
     }
+}
+
+/* --- Styling for tab links --- */
+menu[role="tablist"] li[role="tab"] a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    outline: none;
 }

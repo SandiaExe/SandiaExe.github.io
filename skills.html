@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio - SandiaExe | Overview</title>
+    <title>Portafolio - SandiaExe | Skills</title>
     <!-- CSS de Windows 98 -->
     <link rel="stylesheet" href="https://unpkg.com/98.css">
     <!-- Estilos de Ajuste y Layout Personalizados -->
@@ -14,7 +14,7 @@
 
         <!-- Dynamic Title Banner (Maximized Title Bar Style) -->
         <header class="top-banner">
-            <span id="page-title">Welcome to my portfolio!</span>
+            <span id="page-title">Insatiable Knowledge...</span>
         </header>
 
         <!-- News Ticker (Marquesina superior) -->
@@ -66,13 +66,13 @@
 
         <!-- Menú de Pestañas estilo Windows 98 (Enlaces directos de HTML) -->
         <menu role="tablist">
-            <li role="tab" aria-selected="true" id="tab-overview">
+            <li role="tab" aria-selected="false" id="tab-overview">
                 <a href="index.html"><u>O</u>verview</a>
             </li>
             <li role="tab" aria-selected="false" id="tab-about">
                 <a href="about.html"><u>A</u>bout me</a>
             </li>
-            <li role="tab" aria-selected="false" id="tab-skills">
+            <li role="tab" aria-selected="true" id="tab-skills">
                 <a href="skills.html"><u>S</u>kills</a>
             </li>
             <li role="tab" aria-selected="false" id="tab-projects">
@@ -165,24 +165,67 @@
             <!-- Contenedor de Ventana Principal (Columna 2 - Contenido) -->
             <section class="content-window">
                 
-                <!-- VENTANA: Overview (Presentation) -->
-                <div class="window" id="panel-overview">
+                <!-- VENTANA: Skills (Technologic Stack) -->
+                <div class="window" id="panel-skills">
                     <div class="title-bar">
-                        <div class="title-bar-text">Presentation</div>
+                        <div class="title-bar-text">Technologic Stack</div>
                         <div class="title-bar-controls">
                             <button aria-label="Close" class="window-btn-close" style="cursor: default;"></button>
                         </div>
                     </div>
-                    <div class="window-body overview-body">
-                        <p><strong>Hi I'm SandiaExe and I love computers :)</strong></p>
-                        <p>Data Science student focused on building tech solutions using AI, data analytics, and software development.</p>
+                    <div class="window-body skills-body">
                         
-                        <div class="overview-buttons">
-                            <button class="overview-btn"><u>C</u>V</button>
-                            <a href="skills.html" style="text-decoration: none;">
-                                <button class="overview-btn"><u>S</u>kills</button>
-                            </a>
+                        <!-- Languages -->
+                        <div class="skills-category">
+                            <div class="skills-category-title">Languages</div>
+                            <div class="skills-grid">
+                                <button class="skill-button">Python</button>
+                                <button class="skill-button">Bash</button>
+                                <button class="skill-button">SQL</button>
+                                <button class="skill-button">R</button>
+                                <button class="skill-button">HTML</button>
+                                <button class="skill-button">CSS</button>
+                                <button class="skill-button">Javascript</button>
+                            </div>
                         </div>
+
+                        <!-- Frameworks & Libs -->
+                        <div class="skills-category">
+                            <div class="skills-category-title">Frameworks & Libs</div>
+                            <div class="skills-grid">
+                                <button class="skill-button">Dash</button>
+                                <button class="skill-button">TailwindCSS</button>
+                                <button class="skill-button">.NET</button>
+                            </div>
+                        </div>
+
+                        <!-- Tools -->
+                        <div class="skills-category">
+                            <div class="skills-category-title">Tools</div>
+                            <div class="skills-grid">
+                                <button class="skill-button">Linux</button>
+                                <button class="skill-button">Git</button>
+                                <button class="skill-button">Docker</button>
+                                <button class="skill-button">DVC</button>
+                                <button class="skill-button">Claude</button>
+                                <button class="skill-button">VSCode</button>
+                                <button class="skill-button">Antigravity</button>
+                            </div>
+                        </div>
+
+                        <!-- Cloud & Infra -->
+                        <div class="skills-category">
+                            <div class="skills-category-title">Cloud & Infra</div>
+                            <div class="skills-grid">
+                                <button class="skill-button">GitHub</button>
+                                <button class="skill-button">Supabase</button>
+                                <button class="skill-button">MySQL</button>
+                                <button class="skill-button">MongoDB</button>
+                                <button class="skill-button">Streamlit</button>
+                                <button class="skill-button">Azure</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
